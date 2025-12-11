@@ -55,12 +55,20 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log']
+        pure_funcs: ['console.log'],
+        passes: 2
+      },
+      mangle: {
+        safari10: true
       }
     },
-    // Optimize CSS
-    cssCodeSplit: true,
+    // Optimize CSS - disable code splitting to create single CSS file
+    cssCodeSplit: false,
     cssMinify: true,
-    chunkSizeWarningLimit: 1000
+    // Reduce chunk size warning
+    chunkSizeWarningLimit: 1000,
+    // Improve build performance
+    target: 'es2015',
+    reportCompressedSize: false
   }
 })

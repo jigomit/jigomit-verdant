@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#20926e" />
 
     <!-- Critical Above-the-Fold CSS -->
-    <style>body{margin:0;min-height:100vh;background:#f5fbf8;color:#0c2315;font-size:1rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}*,*::before,*::after{box-sizing:border-box}#app{min-height:100vh}.app-shell{min-height:100vh;display:flex;flex-direction:column;position:relative;overflow-x:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.96),rgba(230,248,237,0.88))}.ambient{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(80px);opacity:0!important;visibility:hidden;z-index:0}.app-shell.ready .ambient{opacity:0.35!important;visibility:visible}main{flex:1;position:relative;z-index:1;min-height:calc(100vh - 80px - 200px)}footer{margin-top:auto;position:relative;z-index:2}.site-header{position:fixed;top:0;left:0;right:0;z-index:10;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);min-height:80px}.hero-image{position:relative;width:100%;min-height:100vh;background:#f5fbf8}.hero-image__background{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.3s ease-in}.hero-image__background.video-loaded{opacity:1}img,video{max-width:100%;display:block;height:auto}img.hero-image__background{opacity:1}</style>
+    <style>body{margin:0;min-height:100vh;background:#f5fbf8;color:#0c2315;font-size:1rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}*,*::before,*::after{box-sizing:border-box}#app{min-height:100vh}.app-shell{min-height:100vh;display:flex;flex-direction:column;position:relative;overflow-x:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.96),rgba(230,248,237,0.88))}.ambient{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(80px);opacity:0!important;visibility:hidden;z-index:0}.app-shell.ready .ambient{opacity:0.35!important;visibility:visible}main{flex:1;position:relative;z-index:1;min-height:calc(100vh - 80px - 200px)}footer{margin-top:auto;position:relative;z-index:2}.site-header{position:fixed;top:0;left:0;right:0;z-index:10;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);min-height:80px}.hero-image{position:relative;width:100%;min-height:100vh;background:#f5fbf8}.hero-image__background{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.3s ease-in}.hero-image__background.video-loaded{opacity:1}img,video{max-width:100%;display:block;height:auto}img.hero-image__background{opacity:1}.hero-image__content{position:relative;z-index:1;width:100%;margin:0 auto;padding-top:clamp(4rem,18vh,9rem);padding-bottom:clamp(3rem,14vh,7rem);color:white;text-shadow:0 2px 16px rgba(0,0,0,0.3);text-align:left}.hero-copy{max-width:800px;width:100%}.hero-image h1{font-size:clamp(2rem,4vw,3rem);margin:0 0 0.5rem;font-weight:700;line-height:1.2}.hero-subtitle{font-weight:600;font-size:1.2rem;margin:0 0 0.5rem}.lead{max-width:620px;font-size:1.1rem;margin:0 0 1.5rem;line-height:1.6;opacity:0.95}.eyebrow{text-transform:uppercase;letter-spacing:0.12em;font-size:0.78rem;font-weight:600;margin:0 0 0.75rem}.hero-image__content .eyebrow{color:#f5fbf8}.hero-cta{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1.5rem}.accent-button,.ghost-button{font-weight:600;border-radius:999px;padding:0.75rem 1.75rem;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.2s ease;font-size:1rem}.accent-button{background:#147654;color:white;box-shadow:0 12px 40px rgba(20,118,84,0.35)}.ghost-button{background:rgba(255,255,255,0.9);border:1px solid rgba(32,146,110,0.35);color:#147654;box-shadow:0 8px 20px rgba(15,56,33,0.08)}.accent-button.large,.ghost-button.large{padding-inline:2.25rem;font-size:1.05rem}.hero-metrics{margin-top:2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem}.hero-metrics .value{font-size:2rem;font-weight:600;margin:0}.hero-metrics .detail{margin:0;color:rgba(255,255,255,0.85);font-size:0.9rem}@media (max-width:640px){.hero-copy{max-width:none}.hero-cta{flex-direction:column}.hero-metrics{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:0.75rem}.hero-metrics .value{font-size:1.5rem}}</style>
 
     <!-- Performance: DNS Prefetch -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -27,7 +27,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all';this.onload=null;">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
     <style>
-      /* Font loading optimization - prevent FOIT */
+      /* Font loading optimization with improved fallback metrics */
+      @font-face {
+        font-family: 'Space Grotesk Fallback';
+        src: local('Arial');
+        size-adjust: 98%;
+        ascent-override: 95%;
+        descent-override: 25%;
+        line-gap-override: 0%;
+      }
       @font-face {
         font-family: 'Space Grotesk';
         font-display: swap;

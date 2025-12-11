@@ -17,6 +17,9 @@ npm run build
 
 # Preview production build
 npm run preview
+
+# Generate responsive WebP images from JPEGs in /public/images
+npm run generate-webp
 ```
 
 ## Build Configuration
@@ -60,7 +63,7 @@ The application uses a persistent shell structure defined in `src/App.vue`:
 - **Footer** - Global footer component
 
 ### Component Organization
-- `src/components/` - Shared components (Navbar, Footer, HeroSection, VideoShowcase, CalloutSection)
+- `src/components/` - Shared components (Navbar, Footer, HeroSection, VideoShowcase, CalloutSection, ResponsiveImage)
 - `src/pages/` - Page-level components mapped to routes
 - `src/data/` - Centralized data exports (navigation links, media paths)
 - `src/composables/` - Reusable composition functions (usePageMeta)
@@ -77,11 +80,21 @@ The application uses a persistent shell structure defined in `src/App.vue`:
 - No component-scoped styles - all styles are global
 
 ### Hero Section Pattern
-The hero section uses a full-viewport image with overlay content:
-- Static image background (`hero-conservation.jpg` from Pexels)
-- Simplified from previous video implementation for better performance
-- Preloaded in `index.html` with `fetchpriority="high"` for optimal LCP
-- Image stored in `/public/images/` directory
+The hero section (`src/components/HeroSection.vue`) uses a full-viewport video/image with overlay content:
+- Video on desktop (lazy loaded via IntersectionObserver)
+- Static responsive image on mobile for bandwidth savings
+- Seamless video loop logic that restarts 0.3s before end to avoid visual gaps
+- Play/pause control button
+- Uses `ResponsiveImage` component for mobile fallback
+- Video sources use `data-src` attributes and are loaded on intersection
+
+### Responsive Image Pattern
+The `ResponsiveImage` component (`src/components/ResponsiveImage.vue`) provides:
+- WebP images with JPEG fallback via `<picture>` element
+- Responsive `srcset` with multiple widths (320w, 480w, 768w, 1024w, 1600w)
+- Configurable `sizes`, `loading`, and `fetchpriority` attributes
+- Expects base filename without extension (e.g., `src="/images/hero-conservation"`)
+- Generated images follow pattern: `{filename}-{width}w.webp`
 
 ### Video Handling Pattern (VideoShowcase)
 See `src/components/VideoShowcase.vue` for reference implementation:
@@ -164,7 +177,7 @@ The site implements several performance optimizations in `index.html`:
 - **DNS prefetch** for Google Fonts domains
 - **Preconnect** to fonts.googleapis.com and fonts.gstatic.com
 - **Preload critical resources**:
-  - Hero image (`/images/hero-conservation.jpg`) with `fetchpriority="high"`
+  - Hero image (`/images/hero-conservation-1024w.webp` and `-1600w.webp`) with `fetchpriority="high"`
   - Space Grotesk font file (WOFF2)
 - **Async font loading** with print media trick (`media="print" onload="this.media='all'"`)
 - **Inline critical CSS** in `<head>` covering hero section for instant rendering
@@ -174,7 +187,25 @@ The site implements several performance optimizations in `index.html`:
 - Dynamic meta tags updated via `usePageMeta` composable on route changes
 - Structured data (JSON-LD) injected client-side in `App.vue`
 
+### Netlify Deployment Configuration
+The `netlify.toml` file configures:
+- Build command: `npm run build` with Node 20
+- Optimizations: CSS/JS bundling and minification, image compression
+- Security headers: X-Frame-Options, X-XSS-Protection, CSP
+- Cache headers:
+  - Static assets (`/assets/*`): 1 year immutable
+  - Images and videos: 1 year immutable
+  - HTML files: No cache, always fresh
+- SPA redirect: All routes redirect to `/index.html` for client-side routing
+
 ## Component Patterns
+
+### ResponsiveImage Component
+Provides optimized responsive images with WebP format:
+- Props: `src` (base path without extension), `alt`, `sizes`, `loading`, `fetchpriority`, `imgClass`, `widths`
+- Automatically generates WebP `srcset` with multiple widths
+- Falls back to JPEG for older browsers
+- Example: `<ResponsiveImage src="/images/hero" alt="..." />`
 
 ### VideoShowcase Component
 Displays a grid of video cards with play/pause controls:
@@ -184,14 +215,29 @@ Displays a grid of video cards with play/pause controls:
 - Props: `videos` array with `title`, `description`, `src`, `poster`
 
 ### HeroSection Component
-Full-viewport image hero with overlay content:
-- Static background image with gradient overlay
+Full-viewport video/image hero with overlay content:
+- Responsive: Video on desktop, image on mobile
+- Lazy loading via IntersectionObserver
+- Seamless video loop with no gap
+- Play/pause control button
 - Metrics display with hero content
 - CTA buttons for primary actions
-- Simplified from previous video implementation (~40 lines vs ~190 lines)
-- Image preloaded in index.html for optimal performance
 
 ### CalloutSection Component
 Reusable content section wrapper (if present):
 - Used for highlighting key information
 - Consistent styling across pages
+
+## Image Generation Workflow
+
+The `scripts/generate-webp.js` script:
+- Processes all JPEG files in `/public/images/`
+- Generates WebP versions at multiple widths (320, 480, 768, 1024, 1600)
+- Creates full-size WebP as fallback
+- Reports size savings (typically 20-30% reduction)
+- Run with `npm run generate-webp` after adding new images
+
+**Workflow**:
+1. Add JPEG images to `/public/images/`
+2. Run `npm run generate-webp`
+3. Use `ResponsiveImage` component to reference them (without extension)
