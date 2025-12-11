@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
+import ResponsiveImage from './ResponsiveImage.vue'
 
 const heroMetrics = [
   { label: 'Hectares restored', value: '540+' },
@@ -142,15 +143,15 @@ const handleVideoEnd = () => {
       />
     </video>
 
-    <!-- Mobile fallback image -->
-    <img
+    <!-- Mobile fallback image with responsive WebP -->
+    <ResponsiveImage
       v-else
-      src="/images/hero-conservation.jpg"
+      src="/images/hero-conservation"
       alt="Environmental conservation - community planting trees"
-      class="hero-image__background"
+      img-class="hero-image__background"
       loading="eager"
       fetchpriority="high"
-      decoding="async"
+      sizes="100vw"
     />
 
     <div class="hero-image__overlay" aria-hidden="true"></div>
