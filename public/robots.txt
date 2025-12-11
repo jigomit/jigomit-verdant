@@ -1,0 +1,17 @@
+# Verdant Future - Robots.txt
+# https://verdantfuture.org/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://verdantfuture.org/sitemap.xml
+
+# Crawl delay (optional - be nice to servers)
+Crawl-delay: 1
+
+# Block common bot traps
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /*?*utm_

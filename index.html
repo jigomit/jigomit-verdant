@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#20926e" />
+
+    <!-- Critical Above-the-Fold CSS -->
+    <style>body{margin:0;min-height:100vh;background:#f5fbf8;color:#0c2315;font-size:1rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}*,*::before,*::after{box-sizing:border-box}.site-header{position:fixed;top:0;left:0;right:0;z-index:10;min-height:80px}.hero-image{position:relative;width:100%;min-height:100vh;background:#000}.hero-image__background{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.3s ease-in}.hero-image__background.video-loaded{opacity:1}img,video{max-width:100%;display:block;height:auto}img.hero-image__background{opacity:1}</style>
+
+    <!-- Performance: DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+
+    <!-- Performance: Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Critical Resource Preloads for LCP -->
+    <link rel="preload" as="image" href="/images/hero-conservation.jpg" fetchpriority="high">
+    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj62UUsjNsFjTDJK.woff2" crossorigin="anonymous">
+
+    <!-- Performance: Load Google Font with optimal strategy -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" media="print" onload="this.media='all';this.onload=null;">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"></noscript>
+
+    <!-- Base SEO Meta Tags -->
+    <title>Verdant Future | Environmental Conservation NGO</title>
+    <meta name="description" content="Verdant Future mobilizes communities to reforest landscapes, accelerate climate literacy, end plastic leakage, and safeguard wildlife across 15 nations." />
+    <meta name="keywords" content="environmental conservation, tree planting, climate action, plastic reduction, wildlife protection, NGO" />
+    <meta name="author" content="Verdant Future" />
+
+    <!-- Open Graph Base Tags -->
+    <meta property="og:site_name" content="Verdant Future" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter Card Base Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@verdantfuture" />
+    <meta name="twitter:creator" content="@verdantfuture" />
+
+    <!-- Additional SEO -->
+    <link rel="canonical" href="https://verdantfuture.org/" />
+    <meta name="robots" content="index, follow" />
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,173 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="logoTitle logoDesc">
+  <title id="logoTitle">Verdant Future</title>
+  <desc id="logoDesc">Circular ecosystem emblem representing environmental conservation, growth, and global impact</desc>
+
+  <defs>
+    <!-- Gradient for outer circle (earth/global) -->
+    <linearGradient id="earthGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#20926e" />
+      <stop offset="100%" stop-color="#147654" />
+    </linearGradient>
+
+    <!-- Gradient for tree/growth element -->
+    <linearGradient id="growthGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#147654" />
+      <stop offset="50%" stop-color="#20926e" />
+      <stop offset="100%" stop-color="#c6ead8" />
+    </linearGradient>
+
+    <!-- Gradient for sky/hope element -->
+    <linearGradient id="skyGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9ed7eb" />
+      <stop offset="100%" stop-color="#c6ead8" />
+    </linearGradient>
+
+    <!-- Gradient for sun/energy -->
+    <radialGradient id="sunGradient">
+      <stop offset="0%" stop-color="#f3c969" />
+      <stop offset="100%" stop-color="#f3c969" stop-opacity="0.3" />
+    </radialGradient>
+  </defs>
+
+  <!-- Outer circle (earth/boundary) -->
+  <circle
+    cx="32"
+    cy="32"
+    r="28"
+    fill="none"
+    stroke="url(#earthGradient)"
+    stroke-width="2.5"
+    opacity="0.9"
+  />
+
+  <!-- Inner protective circle -->
+  <circle
+    cx="32"
+    cy="32"
+    r="24"
+    fill="url(#skyGradient)"
+    opacity="0.15"
+  />
+
+  <!-- Sun/energy source (top right) -->
+  <circle
+    cx="44"
+    cy="20"
+    r="6"
+    fill="url(#sunGradient)"
+  />
+
+  <!-- Water waves (bottom) -->
+  <path
+    d="M 12 42 Q 18 40 24 42 T 36 42 T 48 42 T 52 42"
+    fill="none"
+    stroke="#9ed7eb"
+    stroke-width="2"
+    stroke-linecap="round"
+    opacity="0.7"
+  />
+  <path
+    d="M 14 46 Q 20 44 26 46 T 38 46 T 50 46"
+    fill="none"
+    stroke="#9ed7eb"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    opacity="0.5"
+  />
+
+  <!-- Central tree/sprout (main element) -->
+  <!-- Trunk -->
+  <rect
+    x="30"
+    y="28"
+    width="4"
+    height="14"
+    rx="1"
+    fill="url(#growthGradient)"
+  />
+
+  <!-- Left leaves (3 levels) -->
+  <ellipse
+    cx="26"
+    cy="32"
+    rx="5"
+    ry="3.5"
+    fill="#20926e"
+    opacity="0.85"
+  />
+  <ellipse
+    cx="24"
+    cy="27"
+    rx="4.5"
+    ry="3"
+    fill="#20926e"
+    opacity="0.75"
+  />
+  <ellipse
+    cx="25"
+    cy="22"
+    rx="4"
+    ry="2.5"
+    fill="#c6ead8"
+    opacity="0.9"
+  />
+
+  <!-- Right leaves (3 levels) -->
+  <ellipse
+    cx="38"
+    cy="32"
+    rx="5"
+    ry="3.5"
+    fill="#20926e"
+    opacity="0.85"
+  />
+  <ellipse
+    cx="40"
+    cy="27"
+    rx="4.5"
+    ry="3"
+    fill="#20926e"
+    opacity="0.75"
+  />
+  <ellipse
+    cx="39"
+    cy="22"
+    rx="4"
+    ry="2.5"
+    fill="#c6ead8"
+    opacity="0.9"
+  />
+
+  <!-- Top center leaves -->
+  <ellipse
+    cx="32"
+    cy="19"
+    rx="3.5"
+    ry="3"
+    fill="#c6ead8"
+  />
+  <circle
+    cx="32"
+    cy="17"
+    r="2.5"
+    fill="#e2f4ea"
+  />
+
+  <!-- Protective hands/growth support (subtle) -->
+  <path
+    d="M 18 36 Q 18 32 22 30"
+    fill="none"
+    stroke="#147654"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    opacity="0.4"
+  />
+  <path
+    d="M 46 36 Q 46 32 42 30"
+    fill="none"
+    stroke="#147654"
+    stroke-width="2.5"
+    stroke-linecap="round"
+    opacity="0.4"
+  />
+</svg>
