@@ -126,7 +126,7 @@ const handleVideoEnd = () => {
       loop
       playsinline
       preload="none"
-      poster="/images/hero-conservation.jpg"
+      poster="/images/hero-conservation-1024w.webp"
       @canplay="handleVideoLoaded"
       @timeupdate="handleTimeUpdate"
       @ended="handleVideoEnd"
@@ -138,7 +138,7 @@ const handleVideoEnd = () => {
       <source data-src="/media/hero-optimized.mp4" type="video/mp4" />
       <!-- Fallback image if video fails -->
       <img
-        src="/images/hero-conservation.jpg"
+        src="/images/hero-conservation-1024w.webp"
         alt="Environmental conservation - community planting trees"
       />
     </video>

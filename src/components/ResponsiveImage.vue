@@ -62,9 +62,10 @@ const webpSrcset = computed(() => {
     .join(', ')
 })
 
-// Fallback src (original JPEG - full size)
+// Fallback src (1024w WebP for modern browsers)
 const fallbackSrc = computed(() => {
-  return `${props.src}.jpg`
+  const { basePath, filename } = imageInfo.value
+  return `${basePath}${filename}-1024w.webp`
 })
 </script>
 
@@ -77,7 +78,7 @@ const fallbackSrc = computed(() => {
       :sizes="sizes"
     />
 
-    <!-- Fallback img element (original JPEG) -->
+    <!-- Fallback img element (1024w WebP) -->
     <img
       :src="fallbackSrc"
       :alt="alt"

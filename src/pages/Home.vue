@@ -107,25 +107,25 @@ const showcaseVideos = [
     title: 'Tree Planting',
     description: 'Indigenous species planted with community-led monitoring to restore forests and improve air quality.',
     src: mediaLibrary.videoTreePlanting,
-    poster: '/images/tree-planting-768w.webp'
+    poster: '/images/tree-planting-480w.webp'
   },
   {
     title: 'Climate Action',
     description: 'Hands-on climate literacy programs that turn scientific knowledge into tangible community action.',
     src: mediaLibrary.videoClimateAction,
-    poster: '/images/climate-lab-768w.webp'
+    poster: '/images/climate-lab-480w.webp'
   },
   {
     title: 'Plastic Reduction',
     description: 'Circular waste systems that eliminate plastic pollution and protect our oceans and coastlines.',
     src: mediaLibrary.videoPlasticReduction,
-    poster: '/images/plastic-action-768w.webp'
+    poster: '/images/plastic-action-480w.webp'
   },
   {
     title: 'Wildlife Protection',
     description: 'Community guardianships that reconnect habitats and safeguard biodiversity for future generations.',
     src: mediaLibrary.videoWildlifeProtection,
-    poster: '/images/wildlife-guardian-768w.webp'
+    poster: '/images/wildlife-guardian-480w.webp'
   }
 ]
 

@@ -713,45 +713,43 @@ main {
   border-radius: 18px;
   background: linear-gradient(135deg, rgba(32, 146, 110, 0.12), rgba(159, 215, 235, 0.24));
   border: 1px dashed rgba(32, 146, 110, 0.4);
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
-  align-items: flex-start;
-  justify-content: space-between;
-  min-height: 150px;
+  min-height: 180px;
   /* Prevent layout shifts with CSS containment */
-  contain: layout style paint;
+  contain: layout size style;
+  align-content: flex-start;
 }
 
-.newsletter-copy {
-  flex: 0 0 auto;
-  max-width: 100%;
+.newsletter-copy,
+.newsletter-inline {
+  /* Remove all flex-based sizing */
+  max-width: none;
+  width: 100%;
 }
 
-/* Desktop: explicit height and no wrap to prevent CLS */
+/* Desktop: two column grid to prevent CLS */
 @media (min-width: 768px) {
   .newsletter-bar {
+    grid-template-columns: minmax(220px, 1fr) minmax(300px, 1.3fr);
     min-height: 120px;
-    flex-wrap: nowrap;
-    align-items: center;
+    align-content: center;
+    gap: 2rem;
   }
 
   .newsletter-copy {
-    flex: 0 1 auto;
-    max-width: 45%;
-    min-width: 200px;
+    min-width: 220px;
   }
 }
 
 .newsletter-inline {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
   align-items: center;
   position: relative;
   min-height: 52px;
-  flex: 1 1 auto;
-  max-width: 100%;
 }
 
 .newsletter-inline input {
@@ -759,22 +757,13 @@ main {
   border-radius: 999px;
   border: 1px solid rgba(32, 146, 110, 0.2);
   font-size: 1rem;
-  width: 220px;
-  flex: 0 1 220px;
-  max-width: 100%;
+  flex: 1 1 auto;
+  min-width: 180px;
 }
 
-@media (min-width: 768px) {
-  .newsletter-inline {
-    flex-wrap: nowrap;
-    flex: 1 1 auto;
-  }
-
-  .newsletter-inline input {
-    flex: 1 1 auto;
-    min-width: 200px;
-    max-width: 280px;
-  }
+.newsletter-inline button {
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .success-text {
