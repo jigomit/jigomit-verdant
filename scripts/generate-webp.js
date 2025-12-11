@@ -15,6 +15,7 @@ const SIZES = [320, 480, 768, 1024, 1600]
 
 // Quality settings
 const WEBP_QUALITY = 82
+const WEBP_QUALITY_HERO = 75 // Lower quality for hero image to save bandwidth
 const JPEG_QUALITY = 80
 
 async function generateResponsiveImages() {
@@ -43,6 +44,9 @@ async function generateResponsiveImages() {
       const metadata = await sharp(inputPath).metadata()
       const originalWidth = metadata.width
 
+      // Determine quality based on image name
+      const quality = baseName.includes('hero-conservation') ? WEBP_QUALITY_HERO : WEBP_QUALITY
+
       // Generate WebP versions at different sizes
       for (const width of SIZES) {
         // Skip if target size is larger than original
@@ -57,7 +61,7 @@ async function generateResponsiveImages() {
               withoutEnlargement: true,
               fit: 'inside'
             })
-            .webp({ quality: WEBP_QUALITY })
+            .webp({ quality })
             .toFile(outputPath)
 
           console.log(`  ✓ ${width}w: ${(info.size / 1024).toFixed(1)} KB`)
@@ -71,7 +75,7 @@ async function generateResponsiveImages() {
       const fullWebPPath = join(OUTPUT_DIR, `${baseName}.webp`)
       try {
         const info = await sharp(inputPath)
-          .webp({ quality: WEBP_QUALITY })
+          .webp({ quality })
           .toFile(fullWebPPath)
 
         console.log(`  ✓ Full size WebP: ${(info.size / 1024).toFixed(1)} KB`)

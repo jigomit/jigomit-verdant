@@ -12,6 +12,8 @@ const LOOP_RESTART_THRESHOLD = 0.3
 const videoRefs = ref([])
 const loadedVideos = ref([])
 const pausedVideos = ref([])
+const observedVideos = ref([])
+let observer = null
 
 const setVideoRef = (index) => (el) => {
   if (el) {
@@ -22,6 +24,16 @@ const setVideoRef = (index) => (el) => {
 const playVideo = (index) => {
   const video = videoRefs.value[index]
   if (!video) return
+
+  // Load video source if not loaded yet
+  if (!observedVideos.value.includes(index)) {
+    const source = video.getAttribute('data-src')
+    if (source) {
+      video.src = source
+      video.load()
+    }
+    observedVideos.value.push(index)
+  }
 
   video.play()
     .then(() => {
@@ -92,15 +104,49 @@ const isLoaded = (index) => {
 }
 
 onMounted(() => {
-  // Initialize video playback on mount
-  videoRefs.value.forEach((video, index) => {
+  // Setup IntersectionObserver for lazy loading videos
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const video = entry.target
+          const index = parseInt(video.getAttribute('data-index'))
+
+          // Load video source when it enters viewport
+          if (!observedVideos.value.includes(index)) {
+            const source = video.getAttribute('data-src')
+            if (source) {
+              video.src = source
+              video.load()
+            }
+            observedVideos.value.push(index)
+          }
+
+          // Unobserve after loading
+          observer.unobserve(video)
+        }
+      })
+    },
+    {
+      rootMargin: '50px', // Load slightly before entering viewport
+      threshold: 0.1
+    }
+  )
+
+  // Observe all videos
+  videoRefs.value.forEach((video) => {
     if (video) {
-      video.load()
+      observer.observe(video)
     }
   })
 })
 
 onUnmounted(() => {
+  // Cleanup IntersectionObserver
+  if (observer) {
+    observer.disconnect()
+  }
+
   // Cleanup video resources
   videoRefs.value.forEach((video) => {
     if (video) {
@@ -125,16 +171,19 @@ onUnmounted(() => {
         class="video-card lift"
       >
         <div class="video-wrapper">
-          <!-- Video element with autoplay enabled -->
+          <!-- Video element with lazy loading -->
           <video
             :ref="setVideoRef(index)"
             :id="`video-${index}`"
             :poster="video.poster"
-            :src="video.src"
-            autoplay
+            :data-src="video.src"
+            :data-index="index"
             muted
+            loop
             playsinline
-            preload="metadata"
+            preload="none"
+            loading="lazy"
+            decoding="async"
             @canplay="handleCanPlay(index)"
             @timeupdate="handleTimeUpdate(index)"
             @ended="handleVideoEnd(index)"

@@ -716,18 +716,30 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  min-height: 130px;
+  min-height: 150px;
   /* Prevent layout shifts with CSS containment */
-  contain: layout style;
+  contain: layout style paint;
 }
 
-/* Desktop: explicit height to prevent CLS */
+.newsletter-copy {
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+/* Desktop: explicit height and no wrap to prevent CLS */
 @media (min-width: 768px) {
   .newsletter-bar {
     min-height: 120px;
     flex-wrap: nowrap;
+    align-items: center;
+  }
+
+  .newsletter-copy {
+    flex: 0 1 auto;
+    max-width: 45%;
+    min-width: 200px;
   }
 }
 
@@ -737,7 +749,9 @@ main {
   gap: 1rem;
   align-items: center;
   position: relative;
-  min-height: 48px;
+  min-height: 52px;
+  flex: 1 1 auto;
+  max-width: 100%;
 }
 
 .newsletter-inline input {
@@ -745,8 +759,22 @@ main {
   border-radius: 999px;
   border: 1px solid rgba(32, 146, 110, 0.2);
   font-size: 1rem;
-  min-width: 220px;
-  flex: 1;
+  width: 220px;
+  flex: 0 1 220px;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .newsletter-inline {
+    flex-wrap: nowrap;
+    flex: 1 1 auto;
+  }
+
+  .newsletter-inline input {
+    flex: 1 1 auto;
+    min-width: 200px;
+    max-width: 280px;
+  }
 }
 
 .success-text {
