@@ -68,7 +68,7 @@ const handleSubscribe = () => {
   <footer class="site-footer container">
     <div class="footer-top">
       <RouterLink to="/" class="logo-row">
-        <img :src="brandMark" alt="Verdant Future logo" loading="lazy" />
+        <img :src="brandMark" alt="Verdant Future logo" width="40" height="40" loading="lazy" />
         <p class="brand-name">Verdant Future</p>
       </RouterLink>
       <p class="brand-tagline">Future-focused conservation studio.</p>

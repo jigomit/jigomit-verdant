@@ -2,10 +2,33 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer'
 
+// Custom plugin to inject CSS preload
+function injectCSSPreload() {
+  return {
+    name: 'inject-css-preload',
+    transformIndexHtml(html, ctx) {
+      // Only in build mode
+      if (!ctx.bundle) return html
+
+      // Find the CSS file in the bundle
+      const cssFile = Object.keys(ctx.bundle).find(file => file.endsWith('.css'))
+
+      if (cssFile) {
+        // Inject preload link before closing head tag
+        const preloadLink = `<link rel="preload" href="/${cssFile}" as="style" fetchpriority="high">`
+        return html.replace('</head>', `${preloadLink}\n  </head>`)
+      }
+
+      return html
+    }
+  }
+}
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
+    injectCSSPreload(),
     // Optimize all images (JPEG, PNG) and generate WebP versions
     ViteImageOptimizer({
       test: /\.(jpe?g|png)$/i,
