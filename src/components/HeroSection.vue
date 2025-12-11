@@ -7,10 +7,12 @@ const heroMetrics = [
   { label: 'Volunteers activated', value: '400k' }
 ]
 
+const LOOP_RESTART_THRESHOLD = 0.3
 const videoRef = ref(null)
 const isVideoLoaded = ref(false)
 const isMobile = ref(false)
 const shouldLoadVideo = ref(false)
+const isPlaying = ref(true)
 let observer = null
 
 // Detect mobile devices to show image fallback (saves bandwidth)
@@ -53,13 +55,62 @@ const loadVideoSources = () => {
 
   // Load and play video
   videoRef.value.load()
-  videoRef.value.play().catch((err) => {
-    console.warn('Hero video autoplay blocked:', err)
-  })
+  videoRef.value.play()
+    .then(() => {
+      isPlaying.value = true
+    })
+    .catch((err) => {
+      console.warn('Hero video autoplay blocked:', err)
+      isPlaying.value = false
+    })
 }
 
 const handleVideoLoaded = () => {
   isVideoLoaded.value = true
+}
+
+const togglePlayPause = () => {
+  const video = videoRef.value
+  if (!video) return
+
+  if (video.paused) {
+    video.play()
+      .then(() => {
+        isPlaying.value = true
+      })
+      .catch((err) => {
+        console.warn('Video play failed:', err)
+      })
+  } else {
+    video.pause()
+    isPlaying.value = false
+  }
+}
+
+const handleTimeUpdate = () => {
+  const video = videoRef.value
+  if (!video || !Number.isFinite(video.duration)) return
+
+  const timeRemaining = video.duration - video.currentTime
+
+  // Seamless loop: restart video before it ends to avoid visual gap
+  if (timeRemaining > 0 && timeRemaining < LOOP_RESTART_THRESHOLD) {
+    video.currentTime = 0
+    video.play().catch((err) => {
+      console.warn('Hero video loop play failed:', err)
+    })
+  }
+}
+
+const handleVideoEnd = () => {
+  const video = videoRef.value
+  if (!video) return
+
+  // Backup: restart if we somehow reach the end
+  video.currentTime = 0
+  video.play().catch((err) => {
+    console.warn('Hero video end play failed:', err)
+  })
 }
 </script>
 
@@ -76,6 +127,8 @@ const handleVideoLoaded = () => {
       preload="none"
       poster="/images/hero-conservation.jpg"
       @canplay="handleVideoLoaded"
+      @timeupdate="handleTimeUpdate"
+      @ended="handleVideoEnd"
       :class="{ 'video-loaded': isVideoLoaded }"
     >
       <!-- WebM primary (better compression) -->
@@ -120,6 +173,17 @@ const handleVideoLoaded = () => {
             <p class="detail">{{ metric.label }}</p>
           </div>
         </div>
+
+        <!-- Video control button -->
+        <button
+          v-if="!isMobile && shouldLoadVideo"
+          @click="togglePlayPause"
+          class="video-control-btn"
+          :aria-label="isPlaying ? 'Pause background video' : 'Play background video'"
+          type="button"
+        >
+          {{ isPlaying ? 'Pause' : 'Play' }} background motion
+        </button>
       </div>
     </div>
   </section>

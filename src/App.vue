@@ -1,10 +1,15 @@
 <script setup>
 import { RouterView } from 'vue-router'
-import { onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import Navbar from './components/Navbar.vue'
 import Footer from './components/Footer.vue'
 
+const isReady = ref(false)
+
 onMounted(() => {
+  // Mark app as ready immediately (no delay)
+  isReady.value = true
+
   if (typeof document === 'undefined') return
   if (document.getElementById('vf-structured-data')) return
 
@@ -46,7 +51,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="app-shell">
+  <div class="app-shell" :class="{ 'ready': isReady }">
     <div class="ambient ambient-one" aria-hidden="true"></div>
     <div class="ambient ambient-two" aria-hidden="true"></div>
 

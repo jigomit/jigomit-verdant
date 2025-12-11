@@ -46,8 +46,8 @@ export const mediaLibrary = {
   blogWildlife: '/images/wildlife-guardian.jpg',
   blogMangrove: '/images/mangrove.jpg',
 
-  videoTreePlanting: '/media/tree-planting.mp4',
+  videoTreePlanting: '/media/tree-planting-optimized.mp4',
   videoClimateAction: '/media/climate-action.mp4',
-  videoPlasticReduction: '/media/plastic-reduction.mp4',
+  videoPlasticReduction: '/media/plastic-reduction-optimized.mp4',
   videoWildlifeProtection: '/media/wildlife-protection.mp4'
 }

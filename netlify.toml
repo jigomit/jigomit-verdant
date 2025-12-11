@@ -4,6 +4,25 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  NODE_OPTIONS = "--max_old_space_size=4096"
+
+# Enable Netlify optimizations
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
+
+[build.processing.images]
+  compress = true
 
 # Security headers
 [[headers]]
@@ -52,6 +71,17 @@
   for = "/media/*.webm"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# HTML files - no cache, always fresh
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 # SPA redirect for client-side routing
 [[redirects]]
