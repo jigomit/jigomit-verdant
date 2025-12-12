@@ -15,6 +15,7 @@
 
     <!-- Self-hosted fonts - inlined for optimal performance -->
     <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-400.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-500.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-600.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-700.woff2" crossorigin>
 
@@ -24,28 +25,28 @@
         font-family: 'Space Grotesk';
         font-style: normal;
         font-weight: 400;
-        font-display: swap;
+        font-display: optional;
         src: url('/fonts/space-grotesk-400.woff2') format('woff2');
       }
       @font-face {
         font-family: 'Space Grotesk';
         font-style: normal;
         font-weight: 500;
-        font-display: swap;
+        font-display: optional;
         src: url('/fonts/space-grotesk-500.woff2') format('woff2');
       }
       @font-face {
         font-family: 'Space Grotesk';
         font-style: normal;
         font-weight: 600;
-        font-display: swap;
+        font-display: optional;
         src: url('/fonts/space-grotesk-600.woff2') format('woff2');
       }
       @font-face {
         font-family: 'Space Grotesk';
         font-style: normal;
         font-weight: 700;
-        font-display: swap;
+        font-display: optional;
         src: url('/fonts/space-grotesk-700.woff2') format('woff2');
       }
       /* Fallback font with matching metrics */
@@ -114,7 +115,7 @@
         setTimeout(function() {
           readyState.minTimeElapsed = true;
           checkReady();
-        }, 800);
+        }, 400);
 
         // Preload hero image
         var heroImg = new Image();
