@@ -407,7 +407,13 @@ main {
   border-radius: 0;
   overflow: hidden;
   margin: 0;
-  background: #000;
+  background: linear-gradient(
+    135deg,
+    #0a3d2a 0%,      /* Deep forest green */
+    #1a5d3f 35%,     /* Mid forest */
+    #2a7d5f 65%,     /* Lighter green */
+    #3a8d6f 100%     /* Soft green */
+  );
 }
 
 .hero-image__background {
