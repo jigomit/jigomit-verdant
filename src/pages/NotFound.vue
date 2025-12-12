@@ -40,11 +40,12 @@ usePageMeta({
 
 <style scoped>
 .not-found-page {
-  min-height: calc(100vh - 80px - 450px);
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: var(--space);
+  padding-top: 80px;
   padding-block: clamp(4rem, 10vh, 8rem);
   background: linear-gradient(
     135deg,
