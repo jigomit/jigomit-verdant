@@ -439,6 +439,7 @@ main {
 
 .hero-image__content .eyebrow {
   color: var(--mint-50);
+  margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
 }
 
 .hero-copy {
@@ -475,13 +476,14 @@ main {
   flex-wrap: wrap;
   gap: 0.75rem;
   justify-content: flex-start;
+  margin-bottom: clamp(1rem, 2vw, 1.5rem);
 }
 
 .hero-metrics {
-  margin-top: 2rem;
+  margin-top: clamp(2.5rem, 4vw, 3.5rem);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1rem;
+  gap: clamp(1rem, 2vw, 1.5rem);
 }
 
 .hero-metrics .value {
@@ -496,7 +498,7 @@ main {
 
 /* Video control button */
 .video-control-btn {
-  margin-top: 1.5rem;
+  margin-top: clamp(2rem, 3vw, 2.5rem);
   display: inline-flex;
   align-items: center;
   padding: 0.5rem 1rem;
