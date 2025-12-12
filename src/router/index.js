@@ -67,6 +67,11 @@ const router = createRouter({
       path: '/corporate-partnerships',
       name: 'corporate-partnerships',
       component: () => import('../pages/Corporate.vue')
+    },
+    {
+      path: '/:pathMatch(.*)*',
+      name: 'not-found',
+      component: () => import('../pages/NotFound.vue')
     }
   ],
   scrollBehavior() {
