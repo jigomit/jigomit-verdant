@@ -1,5 +1,8 @@
 <script setup>
+import { useRoute } from 'vue-router'
 import { usePageMeta } from '../composables/usePageMeta'
+
+const route = useRoute()
 
 // Set page metadata
 usePageMeta({
@@ -14,6 +17,9 @@ usePageMeta({
     <div class="not-found-content">
       <p class="not-found-code">404</p>
       <h1 class="not-found-title">Off the Beaten Path</h1>
+      <p class="not-found-route">
+        <code>{{ route.fullPath }}</code>
+      </p>
       <p class="not-found-message">
         This page has wandered off like a seedling carried by the wind.
         Let's help you find your way back to fertile ground.
@@ -74,8 +80,25 @@ usePageMeta({
 .not-found-title {
   font-size: clamp(2rem, 5vw, 3rem);
   color: var(--ink);
-  margin: 0 0 1.5rem;
+  margin: 0 0 1rem;
   font-weight: 700;
+}
+
+.not-found-route {
+  font-size: 1rem;
+  margin: 0 0 1.5rem;
+  color: var(--mint-700);
+  font-weight: 600;
+}
+
+.not-found-route code {
+  background: rgba(32, 146, 110, 0.1);
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  font-family: 'Monaco', 'Courier New', 'Consolas', monospace;
+  font-size: 0.95rem;
+  color: var(--mint-700);
+  letter-spacing: 0.02em;
 }
 
 .not-found-message {
