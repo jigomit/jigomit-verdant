@@ -24,7 +24,11 @@
 [build.processing.images]
   compress = true
 
-# Security headers
+# Performance optimizations
+[[plugins]]
+package = "@netlify/plugin-lighthouse"
+
+# Security and Performance headers
 [[headers]]
   for = "/*"
   [headers.values]
@@ -32,6 +36,9 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    # Block external fonts - only allow self-hosted
+    Content-Security-Policy = "font-src 'self' data:; connect-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline';"
+    # Note: Netlify automatically handles Brotli/gzip compression based on browser support
 
 # Cache static assets for 1 year
 [[headers]]

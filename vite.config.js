@@ -55,7 +55,7 @@ export default defineConfig({
   build: {
     // Enable module preload for faster parallel loading
     modulePreload: {
-      polyfill: true,
+      polyfill: false, // Disable polyfill to reduce bundle size
       resolveDependencies: (filename, deps) => {
         return deps
       }
@@ -70,28 +70,43 @@ export default defineConfig({
         chunkFileNames: 'assets/[name]-[hash].js',
         entryFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
+      },
+      // Improve tree-shaking
+      treeshake: {
+        moduleSideEffects: false,
+        propertyReadSideEffects: false,
+        tryCatchDeoptimization: false
       }
     },
-    // Enable terser minification
+    // Enable terser minification with aggressive settings
     minify: 'terser',
     terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log'],
-        passes: 2
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        passes: 3, // More aggressive compression
+        unsafe: true,
+        unsafe_comps: true,
+        unsafe_math: true,
+        unsafe_proto: true
       },
       mangle: {
         safari10: true
+      },
+      format: {
+        comments: false // Remove all comments
       }
     },
     // Optimize CSS - disable code splitting to create single CSS file
     cssCodeSplit: false,
     cssMinify: true,
     // Reduce chunk size warning
-    chunkSizeWarningLimit: 1000,
-    // Improve build performance
-    target: 'es2015',
-    reportCompressedSize: false
+    chunkSizeWarningLimit: 500,
+    // Modern build target for smaller bundles
+    target: 'es2020',
+    reportCompressedSize: false,
+    // Source maps off for production
+    sourcemap: false
   }
 })

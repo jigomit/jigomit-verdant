@@ -6,29 +6,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#20926e" />
 
-    <!-- Critical Above-the-Fold CSS -->
-    <style>:root{--space:20px}@media (min-width:768px) and (max-width:1023px){:root{--space:50px}}@media (min-width:1024px) and (max-width:1365px){:root{--space:80px}}@media (min-width:1366px){:root{--space:100px}}body{margin:0;min-height:100vh;background:#ffffff;color:#0c2315;font-size:1rem;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}*,*::before,*::after{box-sizing:border-box}#app{min-height:100vh}.app-shell{min-height:100vh;display:flex;flex-direction:column;position:relative;overflow-x:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.96),rgba(230,248,237,0.88))}.ambient{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(80px);opacity:0.35;z-index:0;pointer-events:none}.ambient-one{background:#9ed7eb;top:-140px;right:-20px}.ambient-two{background:#f3c969;bottom:40px;left:-140px}main{flex:1;position:relative;z-index:1;min-height:calc(100vh - 80px - 200px)}footer{margin-top:auto;position:relative;z-index:2}.site-footer{min-height:450px}.site-header{position:fixed;top:0;left:0;right:0;z-index:10;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);min-height:80px}.hero-image{position:relative;width:100%;min-height:100vh;background:#f5fbf8}.hero-image__background{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.3s ease-in}.hero-image__background.video-loaded{opacity:1}img,video{max-width:100%;display:block;height:auto}img.hero-image__background{opacity:1}.hero-image__content{position:relative;z-index:1;width:100%;margin:0 auto;padding-top:clamp(4rem,18vh,9rem);padding-bottom:clamp(3rem,14vh,7rem);color:white;text-shadow:0 2px 16px rgba(0,0,0,0.3);text-align:left}.hero-copy{max-width:800px;width:100%}.hero-image h1{font-size:clamp(2rem,4vw,3rem);margin:0 0 0.5rem;font-weight:700;line-height:1.2}.hero-subtitle{font-weight:600;font-size:1.2rem;margin:0 0 0.5rem}.lead{max-width:620px;font-size:1.1rem;margin:0 0 1.5rem;line-height:1.6;opacity:0.95}.eyebrow{text-transform:uppercase;letter-spacing:0.12em;font-size:0.78rem;font-weight:600;margin:0 0 0.75rem}.hero-image__content .eyebrow{color:#f5fbf8}.hero-cta{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1.5rem}.accent-button,.ghost-button{font-weight:600;border-radius:999px;padding:0.75rem 1.75rem;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.2s ease;font-size:1rem}.accent-button{background:#147654;color:white;box-shadow:0 12px 40px rgba(20,118,84,0.35)}.ghost-button{background:rgba(255,255,255,0.9);border:1px solid rgba(32,146,110,0.35);color:#147654;box-shadow:0 8px 20px rgba(15,56,33,0.08)}.accent-button.large,.ghost-button.large{padding-inline:2.25rem;font-size:1.05rem}.hero-metrics{margin-top:2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem}.hero-metrics .value{font-size:2rem;font-weight:600;margin:0}.hero-metrics .detail{margin:0;color:rgba(255,255,255,0.85);font-size:0.9rem}.newsletter-bar{width:calc(100% - (2*var(--space)));margin:clamp(2rem,5vw,3rem) auto 0;padding-block:2rem;padding-inline:clamp(1.5rem,3vw,2.5rem);border-radius:18px;background:linear-gradient(135deg,rgba(32,146,110,0.12),rgba(159,215,235,0.24));border:1px dashed rgba(32,146,110,0.4);display:grid;grid-template-columns:1fr;gap:1.5rem;height:200px;contain:layout size style;align-content:flex-start}.newsletter-inline{display:flex;flex-wrap:nowrap;gap:0.75rem;align-items:center;position:relative;height:52px}.newsletter-inline input{flex:1 1 auto;min-width:180px;height:52px}.newsletter-inline button{flex-shrink:0;white-space:nowrap;height:52px}@media (min-width:768px){.newsletter-bar{grid-template-columns:minmax(220px,1fr) minmax(300px,1.3fr);height:140px;align-content:center;gap:2rem}}@media (max-width:640px){.hero-copy{max-width:none}.hero-cta{flex-direction:column}.hero-metrics{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:0.75rem}.hero-metrics .value{font-size:1.5rem}}.hero-skeleton{position:fixed;top:0;left:0;width:100%;height:100vh;z-index:9999;background:#f5fbf8;display:flex;align-items:center;justify-content:center;opacity:1;transition:opacity 0.3s ease-out}.hero-skeleton img{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:1}.hero-skeleton__content{position:relative;z-index:2;text-align:center;padding:2rem;color:white;text-shadow:0 2px 16px rgba(0,0,0,0.4)}.hero-skeleton h1{font-size:clamp(1.75rem,4vw,2.5rem);font-weight:700;margin:0;line-height:1.2}#app:not(:empty) ~ .hero-skeleton,body.vue-loaded .hero-skeleton{opacity:0;pointer-events:none}</style>
-
-    <!-- Performance: DNS Prefetch -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
-
-    <!-- Performance: Preconnect to Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Critical Above-the-Fold CSS - Inline for instant rendering -->
+    <style>:root{--mint-50:#f5fbf8;--mint-600:#20926e;--mint-700:#147654;--gold:#f3c969;--sky:#9ed7eb;--ink:#0c2315;--space:20px}@media (min-width:768px) and (max-width:1023px){:root{--space:50px}}@media (min-width:1024px) and (max-width:1365px){:root{--space:80px}}@media (min-width:1366px){:root{--space:100px}}body{margin:0;min-height:100vh;background:#ffffff;color:var(--ink);font-size:1rem;font-family:'Space Grotesk','Space Grotesk Fallback',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6}*,*::before,*::after{box-sizing:border-box}#app{min-height:100vh;opacity:0;transition:opacity 0.5s ease 0.3s}body.app-ready #app{opacity:1}.app-shell{min-height:100vh;display:flex;flex-direction:column;position:relative;overflow-x:hidden;background:linear-gradient(180deg,rgba(255,255,255,0.96),rgba(230,248,237,0.88))}.ambient{position:absolute;width:420px;height:420px;border-radius:50%;filter:blur(80px);opacity:0;visibility:hidden;z-index:0;pointer-events:none}.app-shell.ready .ambient{opacity:0.35;visibility:visible}.ambient-one{background:var(--sky);top:-140px;right:-20px}.ambient-two{background:var(--gold);bottom:40px;left:-140px}main{flex:1;position:relative;z-index:1;min-height:calc(100vh - 80px - 200px)}footer{margin-top:auto;position:relative;z-index:2}.site-footer{min-height:450px}.site-header{position:fixed;top:0;left:0;right:0;z-index:10;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);min-height:80px}.hero-image{position:relative;width:100%;min-height:100vh;background:var(--mint-50)}.hero-image__background{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 0.3s ease-in}.hero-image__background.video-loaded{opacity:1}img,video{max-width:100%;display:block;height:auto}img.hero-image__background{opacity:1}.hero-image__content{position:relative;z-index:1;width:100%;margin:0 auto;padding-top:clamp(4rem,18vh,9rem);padding-bottom:clamp(3rem,14vh,7rem);color:white;text-shadow:0 2px 16px rgba(0,0,0,0.3);text-align:left}.hero-copy{max-width:800px;width:100%}.hero-image h1{font-size:clamp(2rem,4vw,3rem);margin:0 0 0.5rem;font-weight:700;line-height:1.2}.hero-subtitle{font-weight:600;font-size:1.2rem;margin:0 0 0.5rem}.lead{max-width:620px;font-size:1.1rem;margin:0 0 1.5rem;line-height:1.6;opacity:0.95}.eyebrow{text-transform:uppercase;letter-spacing:0.12em;font-size:0.78rem;font-weight:600;margin:0 0 0.75rem}.hero-image__content .eyebrow{color:var(--mint-50)}.hero-cta{display:flex;flex-wrap:wrap;gap:0.75rem;margin-top:1.5rem}.accent-button,.ghost-button{font-weight:600;border-radius:999px;padding:0.75rem 1.75rem;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;text-decoration:none;transition:all 0.2s ease;font-size:1rem}.accent-button{background:var(--mint-700);color:white;box-shadow:0 12px 40px rgba(20,118,84,0.35)}.ghost-button{background:rgba(255,255,255,0.9);border:1px solid rgba(32,146,110,0.35);color:var(--mint-700);box-shadow:0 8px 20px rgba(15,56,33,0.08)}.accent-button.large,.ghost-button.large{padding-inline:2.25rem;font-size:1.05rem}.hero-metrics{margin-top:2rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:1rem}.hero-metrics .value{font-size:2rem;font-weight:600;margin:0}.hero-metrics .detail{margin:0;color:rgba(255,255,255,0.85);font-size:0.9rem}.newsletter-bar{width:calc(100% - (2*var(--space)));margin:clamp(2rem,5vw,3rem) auto 0;padding-block:2rem;padding-inline:clamp(1.5rem,3vw,2.5rem);border-radius:18px;background:linear-gradient(135deg,rgba(32,146,110,0.12),rgba(159,215,235,0.24));border:1px dashed rgba(32,146,110,0.4);display:grid;grid-template-columns:1fr;gap:1.5rem;min-height:200px;contain:layout size style;align-content:flex-start}.newsletter-inline{display:flex;flex-wrap:nowrap;gap:0.75rem;align-items:center;position:relative;min-height:52px}.newsletter-inline input{flex:1 1 auto;min-width:180px;height:52px;padding:0.75rem 1rem;border:1px solid rgba(32,146,110,0.2);border-radius:8px;font-size:1rem}.newsletter-inline button{flex-shrink:0;white-space:nowrap;height:52px}@media (min-width:768px){.newsletter-bar{grid-template-columns:minmax(220px,1fr) minmax(300px,1.3fr);min-height:140px;align-content:center;gap:2rem}}@media (max-width:640px){.hero-copy{max-width:none}.hero-cta{flex-direction:column}.hero-metrics{grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:0.75rem}.hero-metrics .value{font-size:1.5rem}}.app-loader{position:fixed;inset:0;background:linear-gradient(135deg,var(--mint-50),#e6f8ed);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:10000;opacity:1;transition:opacity 0.6s ease-out}.app-loader.hidden{opacity:0;pointer-events:none}.loader-content{text-align:center}.loader-circle{width:60px;height:60px;border:4px solid rgba(32,146,110,0.15);border-top-color:var(--mint-600);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 1.5rem}@keyframes spin{to{transform:rotate(360deg)}}.loader-text{color:var(--mint-700);font-size:0.95rem;font-weight:500;letter-spacing:0.05em}</style>
 
     <!-- Critical Resource Preloads for LCP -->
     <link rel="preload" as="image" href="/images/hero-conservation-768w.webp" type="image/webp" fetchpriority="high" media="(max-width: 1023px)">
     <link rel="preload" as="image" href="/images/hero-conservation-1024w.webp" type="image/webp" fetchpriority="high" media="(min-width: 1024px)">
-    <link rel="preload" as="font" type="font/woff2" href="https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mF71Q-gOoraIAEj62UUsjNsFjTDJK.woff2" crossorigin="anonymous">
-    <!-- Note: Vite automatically adds CSS preload via modulepreload during build -->
 
-    <!-- Performance: Load Google Font with optimal strategy -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=optional">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=optional" media="print" onload="this.media='all';this.onload=null;">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=optional"></noscript>
+    <!-- Self-hosted fonts - inlined for optimal performance -->
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-400.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-600.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/space-grotesk-700.woff2" crossorigin>
+
     <style>
-      /* Font loading optimization with improved fallback metrics */
+      /* Self-hosted Space Grotesk fonts */
+      @font-face {
+        font-family: 'Space Grotesk';
+        font-style: normal;
+        font-weight: 400;
+        font-display: swap;
+        src: url('/fonts/space-grotesk-400.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Space Grotesk';
+        font-style: normal;
+        font-weight: 500;
+        font-display: swap;
+        src: url('/fonts/space-grotesk-500.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Space Grotesk';
+        font-style: normal;
+        font-weight: 600;
+        font-display: swap;
+        src: url('/fonts/space-grotesk-600.woff2') format('woff2');
+      }
+      @font-face {
+        font-family: 'Space Grotesk';
+        font-style: normal;
+        font-weight: 700;
+        font-display: swap;
+        src: url('/fonts/space-grotesk-700.woff2') format('woff2');
+      }
+      /* Fallback font with matching metrics */
       @font-face {
         font-family: 'Space Grotesk Fallback';
         src: local('Arial');
@@ -36,10 +56,6 @@
         ascent-override: 95%;
         descent-override: 25%;
         line-gap-override: 0%;
-      }
-      @font-face {
-        font-family: 'Space Grotesk';
-        font-display: optional;
       }
     </style>
 
@@ -66,32 +82,77 @@
   <body>
     <div id="app"></div>
 
-    <!-- Static Hero Skeleton - Shows immediately before Vue loads -->
-    <div class="hero-skeleton">
-      <picture>
-        <source media="(max-width: 1023px)" srcset="/images/hero-conservation-768w.webp" type="image/webp">
-        <source media="(min-width: 1024px)" srcset="/images/hero-conservation-1024w.webp" type="image/webp">
-        <img src="/images/hero-conservation-1024w.webp" alt="Environmental conservation" fetchpriority="high" loading="eager">
-      </picture>
-      <div class="hero-skeleton__content">
-        <h1>Root solutions for trees, climate, oceans, and wildlife.</h1>
+    <!-- Custom Animated Loader - Shows while Vue is loading -->
+    <div class="app-loader">
+      <div class="loader-content">
+        <div class="loader-circle"></div>
+        <p class="loader-text">VERDANT FUTURE</p>
       </div>
     </div>
 
     <script>
-      // Hide skeleton as soon as Vue starts mounting
-      document.addEventListener('DOMContentLoaded', function() {
+      // Enhanced loader - waits for Vue + hero image + minimum time
+      (function() {
+        var readyState = {
+          vueReady: false,
+          heroImageLoaded: false,
+          minTimeElapsed: false
+        };
+
         var app = document.getElementById('app');
+        var loader = document.querySelector('.app-loader');
+
+        function checkReady() {
+          if (readyState.vueReady && readyState.heroImageLoaded && readyState.minTimeElapsed) {
+            // All conditions met - show app smoothly
+            document.body.classList.add('app-ready');
+            loader.classList.add('hidden');
+          }
+        }
+
+        // Minimum loader display time (prevents flash)
+        setTimeout(function() {
+          readyState.minTimeElapsed = true;
+          checkReady();
+        }, 800);
+
+        // Preload hero image
+        var heroImg = new Image();
+        heroImg.onload = function() {
+          readyState.heroImageLoaded = true;
+          checkReady();
+        };
+        heroImg.onerror = function() {
+          // If image fails, continue anyway
+          readyState.heroImageLoaded = true;
+          checkReady();
+        };
+        // Choose image based on screen width
+        heroImg.src = window.innerWidth >= 1024
+          ? '/images/hero-conservation-1024w.webp'
+          : '/images/hero-conservation-768w.webp';
+
+        // Wait for Vue to mount
         if (app) {
           var observer = new MutationObserver(function(mutations) {
             if (app.innerHTML.trim() !== '') {
-              document.body.classList.add('vue-loaded');
+              readyState.vueReady = true;
+              checkReady();
               observer.disconnect();
             }
           });
           observer.observe(app, { childList: true, subtree: true });
         }
-      });
+
+        // Fallback timeout - force show after 5 seconds
+        setTimeout(function() {
+          if (!document.body.classList.contains('app-ready')) {
+            console.warn('Loader timeout - forcing app display');
+            document.body.classList.add('app-ready');
+            if (loader) loader.classList.add('hidden');
+          }
+        }, 5000);
+      })();
     </script>
 
     <script type="module" src="/src/main.js"></script>

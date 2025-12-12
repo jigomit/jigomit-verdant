@@ -15,7 +15,7 @@ const SIZES = [320, 480, 768, 1024, 1600]
 
 // Quality settings
 const WEBP_QUALITY = 82
-const WEBP_QUALITY_HERO = 40 // Super compressed for hero image to save bandwidth
+const WEBP_QUALITY_HERO = 25 // Ultra compressed for hero image to maximize LCP performance
 const JPEG_QUALITY = 80
 
 async function generateResponsiveImages() {
